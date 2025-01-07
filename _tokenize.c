@@ -23,6 +23,8 @@ void _tokenize(char *line, char *argv)
 	}
 	array[i] = NULL;
 	/* Arrête la liste d'arguments i avec le char null */
+	if (array[0] == NULL)
+		return;
 	exec_cmd(line, array, argv);
 
 }
