@@ -8,8 +8,8 @@
  */
 void exec_cmd(char *line, char *array[1024], char *argv)
 {
-	pid_t pid;
-	int status;
+	pid_t pid; /* stockage processus */
+	int status; /* stockage statut processus enfant */
 
 	pid = fork(); /* création processus enfant */
 	if (pid == -1) /* vérification échec processus */
@@ -29,5 +29,5 @@ void exec_cmd(char *line, char *array[1024], char *argv)
 		}
 	}
 	else /* Sinon processus parent */
-		wait(&status); /* instruction pour ce dernier */
+		wait(&status); /* instruction d'attente fin processus enfant */
 }

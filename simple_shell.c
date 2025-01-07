@@ -7,35 +7,33 @@
  */
 int main(int argc, char *argv[])
 {
-	char *line = NULL;
-	size_t len = 0;
+	char *line = NULL; /* pointeur stockage entrée utilisateur */
+	size_t len = 0; /* taille buffer getline */
 	int is_interactive = isatty(STDIN_FILENO);
-
-	if (argc != 1)
+	/* vérification stdin interactif */
+	if (argc != 1) /* vérification nb arguments valide */
 	{
 		perror(argv[0]);
 		return (1);
 	}
-
-	while (1)
+	while (1) /* boucle infini shell */
 	{
-		if (is_interactive)
+		if (is_interactive) /* vérification mode interactif */
 		{
-			printf("#cisfun$ ");
-			fflush(stdout);
+			printf("#cisfun$ "); /* affichage prompt */
+			fflush(stdout); /* froce écriture imédiate prompt */
 		}
 		if (getline(&line, &len, stdin) == -1)
+		/* vérification entrée utilisateur valide */
 		{
-			if (is_interactive)
+			if (is_interactive) /* vérification mode interactif */
 				printf("\n");
-			break;
+			break; /* stop boucle */
 		}
-
-		if (strncmp(line, "exit", 4) == 0)
-			break;
-
-		_tokenize(line, argv[0]);
+		if (strncmp(line, "exit", 4) == 0) /* vérification correspondance */
+			break; /* stop la boucle */
+		_tokenize(line, argv[0]); /* appel fonction */
 	}
-	free(line);
+	free(line); /* libération mémoire alloué */
 	return (0);
 }
