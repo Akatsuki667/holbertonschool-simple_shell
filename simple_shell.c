@@ -41,6 +41,13 @@ int main(int argc, char *argv[])
 			}
 		}
 
+		/* Supprimer le saut de ligne à la fin de la ligne */
+        line[strcspn(line, "\n")] = '\0';
+
+        /* Vérifier si la commande est "exit" */
+        if (strncmp(line, "exit", 4) == 0)
+        	break;
+
 		_tokenize(line, argv[0]);
 	}
 	free(line); /* libération mémoire alloué à line par getline() */
