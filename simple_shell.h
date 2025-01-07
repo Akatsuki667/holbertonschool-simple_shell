@@ -9,5 +9,6 @@
 #include <sys/wait.h> /* founit macros/fonctions gestion processus enfant */
 
 void _tokenize(char *str, char *argv);
+void exec_cmd(char *line, char *array[1024], char *argv);
 
 #endif

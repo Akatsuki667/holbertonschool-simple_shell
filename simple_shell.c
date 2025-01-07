@@ -7,49 +7,35 @@
  */
 int main(int argc, char *argv[])
 {
-	char *line = NULL; /*stockage pointeur entrée utilisateur */
-	size_t len = 0; /* taille initiale buffer alloué */
+	char *line = NULL;
+	size_t len = 0;
+	int is_interactive = isatty(STDIN_FILENO);
 
-	if (argc != 1) /* vérification validité nb argument */
+	if (argc != 1)
 	{
 		perror(argv[0]);
 		return (1);
 	}
 
-	while (1) /* boucle infini prompt */
+	while (1)
 	{
-		if (isatty(STDIN_FILENO)) /* Vérifie exécution interactive */
+		if (is_interactive)
 		{
-			printf("#cisfun$ "); /* affichage prompt */
-			fflush(stdout); /* forcer écriture immédiate */
+			printf("#cisfun$ ");
+			fflush(stdout);
+		}
+		if (getline(&line, &len, stdin) == -1)
+		{
+			if (is_interactive)
+				printf("\n");
+			break;
 		}
 
-		if (getline(&line, &len, stdin) == -1) /* vérification lecture a échoué */
-		/* lire ligne d'entrée à partir de stdin(clavier) */
-		{
-			if (feof(stdin)) /* Gère le Ctrl + D */
-			{
-				if (isatty(STDIN_FILENO)) /* Si intéractif */
-					printf("\n");
-				break;
-			}
-			else /* Autres erreurs de getline */
-			{
-				perror(argv[0]);
-				free(line); /* libération mémoire alloué à line par getline() */
-				return (1); /* indication erreur */
-			}
-		}
-
-		/* Supprimer le saut de ligne à la fin de la ligne */
-        line[strcspn(line, "\n")] = '\0';
-
-        /* Vérifier si la commande est "exit" */
-        if (strncmp(line, "exit", 4) == 0)
-        	break;
+		if (strncmp(line, "exit", 4) == 0)
+			break;
 
 		_tokenize(line, argv[0]);
 	}
-	free(line); /* libération mémoire alloué à line par getline() */
+	free(line);
 	return (0);
 }
