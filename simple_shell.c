@@ -23,16 +23,21 @@ int main(int argc, char *argv[])
 			printf("#c_is_hell "); /* affichage prompt */
 			fflush(stdout); /* froce écriture imédiate prompt */
 		}
+
 		if (getline(&line, &len, stdin) == -1)
 		/* vérification entrée utilisateur valide */
 		{
 			if (is_interactive) /* vérification mode interactif */
 				printf("\n");
+
 			break; /* stop boucle */
 		}
+
 		if (strncmp(line, "exit", 4) == 0) /* vérification correspondance */
 			break; /* stop la boucle */
+
 		_tokenize(line, argv[0]); /* appel fonction */
+		free(line);
 	}
 	free(line); /* libération mémoire alloué */
 	return (0);
