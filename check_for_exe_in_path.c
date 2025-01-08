@@ -4,7 +4,7 @@
  * @array: exécutable donner par le user
  * Return: Retourne exécutbale si succès, retourne NULL si échec
  */
-char *check_for_exe_in_path(char *array)
+char *check_for_exe_in_path(char *array, char *argv)
 {
 	char *path, *path_copy, *path_token, *possible_path, *path_delim = ":";
 	size_t pp_len;
@@ -43,6 +43,7 @@ char *check_for_exe_in_path(char *array)
 		free(possible_path);
 		path_token = strtok(NULL, path_delim); /* incrémentation segment */
 	}
+	perror(argv);
 	free(path_copy);
 	return (NULL);
 }

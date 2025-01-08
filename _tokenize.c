@@ -14,7 +14,6 @@ void _tokenize(char *line, char *argv)
 
 	if (line == NULL) /* vérification paramètre valide */
 		return;
-
 	token = strtok(line, delim); /* découpage line en sous chaîne */
 	i = 0;
 	while (token) /* tant que mots à extraire */
@@ -22,16 +21,14 @@ void _tokenize(char *line, char *argv)
 		array[i++] = token; /* stockage de chaque mot trouvé */
 		token = strtok(NULL, delim); /* appel pour continuer analyse line */
 	}
-
 	array[i] = NULL;
 	/* Arrête la liste d'arguments i avec le char null */
 
 	if (array[0] == NULL) /* vérification saisie utilisateur */
 		return;
-
 	if (array[0][0] != '/') /* user a saisi path absolu ? */
 	{
-		cmd_path = check_for_exe_in_path(array[0]); /* a saisi un exécutable */
+		cmd_path = check_for_exe_in_path(array[0], argv); /* a saisi un exécutable */
 		/* possible_path vérifié devient cmd_path(retour fonction) */
 		if (!cmd_path) /* vérification existence cmd_path */
 			return;
