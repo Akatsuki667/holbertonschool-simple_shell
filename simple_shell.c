@@ -37,7 +37,6 @@ int main(int argc, char *argv[])
 			break; /* stop la boucle */
 
 		_tokenize(line, argv[0]); /* appel fonction */
-		free(line);
 	}
 	free(line); /* libération mémoire alloué */
 	return (0);
