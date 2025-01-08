@@ -20,7 +20,7 @@ void exec_cmd(char *line, char *array[1024], char *argv)
 	}
 	else if (pid == 0) /* vérification processus enfant */
 	{
-		if (execve(array[0], array, NULL) == -1)
+		if (execve(line, array, NULL) == -1)
 		/* vérification exécution valide */
 		{
 			perror(argv);

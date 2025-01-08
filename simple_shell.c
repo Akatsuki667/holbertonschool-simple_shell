@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 	{
 		if (is_interactive) /* vérification mode interactif */
 		{
-			printf("#cisfun$ "); /* affichage prompt */
+			printf("#c_is_hell "); /* affichage prompt */
 			fflush(stdout); /* froce écriture imédiate prompt */
 		}
 		if (getline(&line, &len, stdin) == -1)

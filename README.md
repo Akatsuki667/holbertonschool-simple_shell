@@ -22,3 +22,22 @@ Write a UNIX command line interpreter.
 - Handle special characters : ", ', `, \, *, &, #
 - Be able to move the cursor.
 - Handle commands with arguments.
+
+
+# Simple Shell 0.2
+
+## Description
+Simple shell 0.1 +
+
+### Expectation
+- Handle command lines with arguments
+
+
+# Simple Shell 0.3
+
+## Description
+Simple shell 0.2 +
+
+### Expectation
+- Handle the PATH
+- Fork must not be called if the command doesn’t exist
