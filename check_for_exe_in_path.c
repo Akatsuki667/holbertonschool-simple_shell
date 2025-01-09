@@ -2,6 +2,7 @@
 /**
  * check_for_exe_in_path - chercher exécutable
  * @array: exécutable donner par le user
+ * @argv: nom du programme CLI
  * Return: Retourne exécutbale si succès, retourne NULL si échec
  */
 char *check_for_exe_in_path(char *array, char *argv)

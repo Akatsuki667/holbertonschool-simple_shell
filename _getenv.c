@@ -29,7 +29,7 @@ char *_getenv(const char *name)
 		}
 		i++; /* incrémentation variable environnement suivant */
 	}
-	return (flag == 1 ? &environ[i][j+1] : NULL);
+	return (flag == 1 ? &environ[i][j + 1] : NULL);
 	/* retourn pointeur sur la valeur après "=" si correspondance */
 }
 

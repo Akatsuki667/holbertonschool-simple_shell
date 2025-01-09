@@ -30,7 +30,7 @@ void _tokenize(char *line, char *argv)
 
 	if (array[0][0] != '/') /* user a saisi path absolu ? */
 	{
-		cmd_path = check_for_exe_in_path(array[0], argv); /* a saisi un exécutable */
+		cmd_path = check_for_exe_in_path(array[0], argv); /* a saisi un exec */
 		/* possible_path vérifié devient cmd_path(retour fonction) */
 		if (!cmd_path) /* vérification existence cmd_path */
 			return;
@@ -38,8 +38,5 @@ void _tokenize(char *line, char *argv)
 		free(cmd_path); /* libération mémoire */
 	}
 	else /* sinon a saisi un path absolu */
-	{
 		exec_cmd(array[0], array, argv);
-		free(line);
-	}
 }
