@@ -38,6 +38,9 @@ int main(int argc, char *argv[])
 		if (strcmp(line, "env") == 0)
 			_printenv();
 
+		if (strncmp(line, "exit", 4) == 0)
+			exit(EXIT_FAILURE);
+
 		_tokenize(line, argv[0]); /* appel fonction */
 	}
 	free(line); /* libération mémoire alloué */
