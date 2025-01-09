@@ -35,6 +35,9 @@ int main(int argc, char *argv[])
 
 		line[strcspn(line, "\n")] = '\0';
 
+		if (strcmp(line, "env") == 0)
+			_printenv();
+
 		_tokenize(line, argv[0]); /* appel fonction */
 	}
 	free(line); /* libération mémoire alloué */
