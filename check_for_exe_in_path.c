@@ -33,7 +33,7 @@ char *check_for_exe_in_path(char *array, char *argv)
 			free(path_copy);
 			return (NULL);
 		}
-		snprintf(possible_path, pp_len, "%s/%s", path_token, array);
+		sprintf(possible_path, "%s/%s", path_token, array);
 		/* reconstruction path absolu valide */
 		if (!access(possible_path, X_OK)) /* vérif ficher exec trouvé ? */
 		{
