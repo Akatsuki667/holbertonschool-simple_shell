@@ -8,7 +8,7 @@ void _tokenize(char *line, char *argv)
 {
 	int i; /* index token extraits */
 	char *token; /* pointeur token extrait de line */
-	char *delim = " \n"; /* délimitateurs */
+	char *delim = " "; /* délimitateurs */
 	char *array[1024]; /* stockage mot extrait */
 	char *cmd_path;
 
@@ -25,9 +25,15 @@ void _tokenize(char *line, char *argv)
 	/* Arrête la liste d'arguments i avec le char null */
 
 	if (array[0] == NULL) /* vérification saisie utilisateur */
+	{
+		printf("C'est ici que je rends faux\n");
 		return;
+	}
+
+	printf("%c\n", array[0][0]);
 	if (array[0][0] != '/') /* user a saisi path absolu ? */
 	{
+		printf("Je passe par executable\n");
 		cmd_path = check_for_exe_in_path(array[0], argv); /* a saisi un exécutable */
 		/* possible_path vérifié devient cmd_path(retour fonction) */
 		if (!cmd_path) /* vérification existence cmd_path */
@@ -36,5 +42,10 @@ void _tokenize(char *line, char *argv)
 		free(cmd_path); /* libération mémoire */
 	}
 	else /* sinon a saisi un path absolu */
+	{
+		printf("Je passe par PATH\n");
+		printf("\"%s\"\n", line);
 		exec_cmd(line, array, argv);
+		free(line);
+	}
 }

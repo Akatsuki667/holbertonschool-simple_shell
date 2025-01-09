@@ -11,7 +11,7 @@ char *check_for_exe_in_path(char *array, char *argv)
 
 	if (array == NULL) /* vérification paramètre valide */
 		return (NULL);
-	path = getenv("PATH"); /* chercher variable d'environnement */
+	path = _getenv("PATH"); /* chercher variable d'environnement */
 	if (!path) /* vérification variable existe */
 	{
 		fprintf(stderr, "Error : PATH environment variable not found\n");
@@ -34,6 +34,7 @@ char *check_for_exe_in_path(char *array, char *argv)
 			return (NULL);
 		}
 		sprintf(possible_path, "%s/%s", path_token, array);
+		printf("%s", possible_path);
 		/* reconstruction path absolu valide */
 		if (!access(possible_path, X_OK)) /* vérif ficher exec trouvé ? */
 		{
