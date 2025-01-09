@@ -39,7 +39,10 @@ int main(int argc, char *argv[])
 			_printenv();
 
 		if (strncmp(line, "exit", 4) == 0)
-			exit(EXIT_FAILURE);
+		{
+			free(line);
+			exit(0);
+		}
 
 		_tokenize(line, argv[0]); /* appel fonction */
 	}
