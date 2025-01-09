@@ -14,6 +14,7 @@ void _tokenize(char *line, char *argv)
 
 	if (line == NULL) /* vérification paramètre valide */
 		return;
+
 	token = strtok(line, delim); /* découpage line en sous chaîne */
 	i = 0;
 	while (token) /* tant que mots à extraire */
@@ -25,15 +26,10 @@ void _tokenize(char *line, char *argv)
 	/* Arrête la liste d'arguments i avec le char null */
 
 	if (array[0] == NULL) /* vérification saisie utilisateur */
-	{
-		printf("C'est ici que je rends faux\n");
 		return;
-	}
 
-	printf("%c\n", array[0][0]);
 	if (array[0][0] != '/') /* user a saisi path absolu ? */
 	{
-		printf("Je passe par executable\n");
 		cmd_path = check_for_exe_in_path(array[0], argv); /* a saisi un exécutable */
 		/* possible_path vérifié devient cmd_path(retour fonction) */
 		if (!cmd_path) /* vérification existence cmd_path */
@@ -43,9 +39,7 @@ void _tokenize(char *line, char *argv)
 	}
 	else /* sinon a saisi un path absolu */
 	{
-		printf("Je passe par PATH\n");
-		printf("\"%s\"\n", line);
-		exec_cmd(line, array, argv);
+		exec_cmd(array[0], array, argv);
 		free(line);
 	}
 }

@@ -35,10 +35,6 @@ int main(int argc, char *argv[])
 
 		line[strcspn(line, "\n")] = '\0';
 
-		if (strncmp(line, "exit", 4) == 0) /* vérification correspondance */
-			break; /* stop la boucle */
-
-		printf("%s\n", line);
 		_tokenize(line, argv[0]); /* appel fonction */
 	}
 	free(line); /* libération mémoire alloué */
