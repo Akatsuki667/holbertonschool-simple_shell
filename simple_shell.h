@@ -11,5 +11,8 @@
 void _tokenize(char *str, char *argv);
 void exec_cmd(char *line, char *array[1024], char *argv);
 char *check_for_exe_in_path(char *array, char *argv);
+char *_getenv(const char *name);
+
+extern char **environ;
 
 #endif
