@@ -37,8 +37,7 @@ int main(int argc __attribute__((unused)), char **argv)
 			if (!builtin_flag) /* vérification builtin_flag est 0 */
 				check_for_exe_in_path(cmd_vector[0], argv[0]);
 		}
-		else
-			exec_cmd(cmd_vector, argv[0]);
+		exec_cmd(cmd_vector, argv[0]);
 		free_cmd_vector(cmd_vector);
 	}
 	free(line);
