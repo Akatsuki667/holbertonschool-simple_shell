@@ -1,9 +1,9 @@
 #include "simple_shell.h"
 /**
  * check_for_exe_in_path - chercher exécutable
- * @array: exécutable donner par le user
+ * @cmd_vector_item: exécutable donné par le user
  * @argv: nom du programme CLI
- * Return: Retourne exécutbale si succès, retourne NULL si échec
+ * Return: Retourne void
  */
 void check_for_exe_in_path(char *cmd_vector_item, char *argv)
 {
@@ -16,7 +16,7 @@ void check_for_exe_in_path(char *cmd_vector_item, char *argv)
 		fprintf(stderr, "%s: PATH variable not found\n", argv);
 		return;
 	}
-	path_copy = strdup(path); /* copie variable d'environnemnt */
+	path_copy = strdup(path); /* copie variable d'environnement */
 	if (!path_copy) /* vérification copie existante */
 	{
 		fprintf(stderr, "%s: PATH handling error\n", argv);
@@ -25,7 +25,7 @@ void check_for_exe_in_path(char *cmd_vector_item, char *argv)
 	path_token = strtok(path_copy, path_delim);/* segmentation path */
 	while (path_token)
 	{
-		pp_len = strlen(path_token) + strlen(cmd_vector_item) + 2; 
+		pp_len = strlen(path_token) + strlen(cmd_vector_item) + 2;
 		/* + 2 pour /,'\0' */
 		possible_path = malloc(pp_len);
 		if (!possible_path) /* vérification alloc n'a pas fail */

@@ -1,5 +1,4 @@
 #include "simple_shell.h"
-
 /**
   * _getenv - retrieves queried env variable
   * @name: variable asked for
@@ -32,4 +31,3 @@ char *_getenv(const char *name)
 	return (flag == 1 ? &environ[i][j + 1] : NULL);
 	/* retourn pointeur sur la valeur après "=" si correspondance */
 }
-

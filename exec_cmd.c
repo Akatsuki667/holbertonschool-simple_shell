@@ -1,8 +1,7 @@
 #include "simple_shell.h"
 /**
  * exec_cmd - exécution programme
- * @line: pointeur prompt user
- * @array: stockage buffer des tokens
+ * @cmd_vector: tableau de pointeurs(args = tokens input user)
  * @argv: nom du programme
  * Return: void
  */
@@ -19,7 +18,7 @@ void exec_cmd(char **cmd_vector, char *argv)
 	}
 	else if (pid == 0) /* vérification processus enfant */
 	{
-		if (execve(cmd_vector[0], cmd_vector, NULL) == -1) 
+		if (execve(cmd_vector[0], cmd_vector, NULL) == -1)
 		/* vérif execution valide */
 		{
 			perror(argv);

@@ -3,6 +3,7 @@
  * _tokenize - tokénisation argument ligne de commande
  * @line: string à tokéniser
  * @argv: nom du programme pour message erreur
+ * Return: Tableau de pointeurs(args = tokens input user)
  */
 char **_tokenize(char *line, char *argv)
 {
@@ -13,7 +14,7 @@ char **_tokenize(char *line, char *argv)
 
 	if (line == NULL) /* vérification paramètre valide */
 		return (NULL);
-	cmd_vector = malloc(MAX_ARGS_INPUT * sizeof(char*));
+	cmd_vector = malloc(MAX_ARGS_INPUT * sizeof(char *));
 	if (!cmd_vector)
 	{
 		perror(argv);
@@ -32,16 +33,16 @@ char **_tokenize(char *line, char *argv)
 		perror(argv);
 		return (NULL);
 		}
-		strcpy(cmd_vector[i], token);
-		i++;
+		strcpy(cmd_vector[i], token); /* copie token dans emplacement alloué */
+		i++; /* incrémentation emplacement tableau */
 		token = strtok(NULL, delim); /* incrementation - tok suivant */
 	}
-	cmd_vector[i] = NULL; /* Arrête la liste d'arguments i avec le char null */
+	cmd_vector[i] = NULL; /* Arrête liste d'args à idx[i] avec ptr null */
 
 	if (cmd_vector[0] == NULL) /* vérification saisie utilisateur */
 	{
 		free(cmd_vector);
 		return (NULL);
 	}
-	return (cmd_vector);
+	return (cmd_vector); /* retour tableau ptr contenant token saisi user */
 }

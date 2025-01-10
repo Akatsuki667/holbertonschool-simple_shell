@@ -1,7 +1,7 @@
 #ifndef SIMPLE_SHELL_H
 #define SIMPLE_SHELL_H
 
-#include <linux/limits.h> /* For PATH_MAX */
+#include <limits.h> /* For PATH_MAX */
 #include <stdio.h> /* input/output */
 #include <stdlib.h> /* gestion mémoire/processus */
 #include <string.h> /* manipulation chaîne de caractères */

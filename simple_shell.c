@@ -17,7 +17,7 @@ int main(int argc __attribute__((unused)), char **argv)
 	{
 		if (is_interactive) /* vérification mode interactif */
 		{
-			printf("#c_is_hell ");
+			printf("#c_is_hell "); /* affichage prompt */
 			fflush(stdout); /* force écriture imédiate prompt */
 		}
 		if (getline(&line, &len, stdin) == -1)
@@ -28,18 +28,18 @@ int main(int argc __attribute__((unused)), char **argv)
 			break; /* sort de la boucle while */
 		}
 		line[strcspn(line, "\n")] = '\0'; /* supp le \n final */
-		
+
 		cmd_vector = _tokenize(line, argv[0]);
 		if (!cmd_vector)
 			continue;
 
-		if (cmd_vector[0][0] != '/')
+		if (cmd_vector[0][0] != '/') /* vérification PATH absolu ? */
 			check_for_exe_in_path(cmd_vector[0], argv[0]);
 
 		exec_cmd(cmd_vector, argv[0]);
 		for (i = 0; cmd_vector[i] != NULL; i++)
-			free(cmd_vector[i]);
-		free(cmd_vector);
+			free(cmd_vector[i]); /* libération emplacements tableau */
+		free(cmd_vector); /* libération tableau */
 	}
 	free(line);
 	return (0);
