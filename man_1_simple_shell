@@ -1,8 +1,85 @@
-.TH simple_shell 1 "JANUARY 2024" "Custom simple shell" "Custom simple shell
-manual"
+.TH HSH(1) 1 "JANUARY 2024" "Custom simple shell" "Custom simple shell manual"
 .SH NAME
+hsh - simple bourne-shell-like, C-written, simple implementation of a command
+interpreter (shell)
+
 .SH SYNOPSIS
+.B hsh
+
 .SH DESCRIPTION
-.SH RETURN VALUES
+.B dash
+is a customized command interpreter based on the Bourne Shell's (sh) behavior.
+This basic implementation was written in C and designed to run on Ubuntu OS. It
+is the final project of Holberton School's foundational training program's first
+quarter (see README.md for additionnal details on the project).
+
+.SS Overview
+The shell is a command line interpreter which reads user-inputed lines from
+either a file or the terminal, and interprets them. Input commands can be under
+the form of an absolute path or simply the name of a program, whose executable
+will be looked upon, and ran if possible, by the interpreter.
+
+.SS Invocation
+The shell has been designed to handle both interactive and non-interactive
+modes. In interactive mode, the shell prompts the user before each command
+before interpreting them regardless of the above-described form they have been
+submitted in. It does handle occasionnal errors differently relying on the
+standard errors encountered. As it is a beginners' project, it wasn't designed
+as a native shell and doesn't behave like a login shell, as opposed to dash
+itself.
+
+.SS Argument List Processing
+No single letters options have been implemented yet, but it should be possible
+to do so as the behavior of the shell should be very similar to original dash.
+Hence no lexical structure subsection shall be fined in this manpage, nor
+Quoting, Backslash, Single Quotes, Double Quotes, Reserved Wrods, Aliases
+sections which are found in the native, low-level, fully-implemented typical
+dash. For your information, the variadic behavior was the core of an earlier learning
+project whose main objective was to code a variadic printf-like function.
+
+.SS Simple Commands
+If a simple ccommand has been recognized, mostly as it isn't inputed under the
+form of an absolute path, the shell perform the following actions :
+
+.IP 1. 4
+The leading word of the input line, expected to be the command, is stripped off
+to be looked upon, and the whole line is tokenized into an array of arguments.
+
+.IP 2. 4
+The command is passed to a function which retrieves the PATH environment
+variable as a semi-colon-separated list, tokenizes it, and verifies for each
+absolute path the presence of the required executable, and its permissions.
+Success allows the appropriate, fully-rebuilt, verified path to replace the
+first element of the aforementioned array of arguments.
+
+.IP 3. 4
+The full array of arguments is passed for command execution. The function
+handles process forking alongside with execution.
+
+.SS Complex commands, redirections...
+Complex commands, redirections, word expansions and many more advanced features
+of a shell were not handled first hand as it is, again, a beginners' non-native shell. They rely on the OS's handling of those. You should not expect a complete, full scale implementation of a native shell.
+
+.SH RETURN VALUE
+Return value is 0 when the shell exits normally. Otherwise, the EXIT_FAILURE or
+the errno encountered by the OS are outputted.
+
 .SH EXAMPLES
-.SH SEE ALSO
+.PP
+native_prompt$ ./hsh
+c_is_hell ls
+AUTHORS    _getenv.c    check_for_exe_in_path.c  hack                simple_shell.c
+README.md  _tokenize.c  exec_cmd.c               man_1_simple_shell  simple_shell.h
+c_is_hell 
+
+.PP
+native_prompt$ echo "/bin/ls" | ./hsh
+AUTHORS    _getenv.c    check_for_exe_in_path.c  hack                simple_shell.c
+README.md  _tokenize.c  exec_cmd.c               man_1_simple_shell  simple_shell.h
+native_prompt$
+
+.SH DATE
+January 10th, 2025
+
+.SH AUTHORS
+see AUTHORS file, /hack.
