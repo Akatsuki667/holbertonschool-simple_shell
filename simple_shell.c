@@ -36,6 +36,13 @@ int main(int argc __attribute__((unused)), char **argv)
 		if (cmd_vector[0][0] != '/') /* vérification PATH absolu ? */
 			check_for_exe_in_path(cmd_vector[0], argv[0]);
 
+		printf("%s\n", cmd_vector[0]);
+		if (strcmp(cmd_vector[0], "env") == 0)
+		{
+			printf("%s\n", cmd_vector[0]);
+			_printenv();
+		}
+
 		exec_cmd(cmd_vector, argv[0]);
 		for (i = 0; cmd_vector[i] != NULL; i++)
 			free(cmd_vector[i]); /* libération emplacements tableau */
