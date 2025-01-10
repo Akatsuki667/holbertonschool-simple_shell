@@ -11,9 +11,12 @@
 
 #define MAX_ARGS_INPUT 100
 
-char **_tokenize(char *line, char *argv);
+
 void exec_cmd(char **cmd_vector, char *argv);
 void check_for_exe_in_path(char *cmd_vector_item, char *argv);
+void _printenv(void);
+
+char **_tokenize(char *line, char *argv);
 char *_getenv(const char *name);
 
 extern char **environ;
