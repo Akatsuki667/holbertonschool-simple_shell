@@ -9,7 +9,7 @@ char **_tokenize(char *line, char *argv)
 {
 	int i; /* index token extraits */
 	char *token; /* pointeur token extrait de line */
-	char *delim = " "; /* délimitateurs */
+	char *delim = " \t\r"; /* délimitateurs */
 	char **cmd_vector; /* stockage mot extrait */
 
 	if (line == NULL) /* vérification paramètre valide */
