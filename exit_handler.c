@@ -12,6 +12,6 @@ void exit_handler(char **cmd_vector, char *line)
 	{
 		free_cmd_vector(cmd_vector);
 		free(line);
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
 }
