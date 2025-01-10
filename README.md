@@ -54,6 +54,8 @@ cd holbertonschool-simple_shell
 ## Eamples of use
 Here are some examples of how to use the **simple_shell** :
 
+---
+
 ### 1. Basics commands
 1. #c_is_hell ls
 2. #c_is_hell pwd
@@ -109,12 +111,17 @@ LS_COLORS=di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw
 LANG=fr_FR.UTF-8
 _=/Users/altyt/Akatsuki667/holbertonschool-simple_shell/./hsh
 
+---
 
 ## Man page `simple_shell`
 [man_1_simple_shell](man_1_simple_shell)
 
+---
+
 ## Flowchart
 [simple_shell_flowchart.drawio](https://app.diagrams.net/#HAkatsuki667%2Fholbertonschool-simple_shell%2Fmain%2Fsimple[…]chart.drawio#%7B%22pageId%22%3A%2294cD6ZTa3Vw65mxtf7fP%22%7D)
+
+---
 
 ## Contributors
 This project was produced as part of the Holberton School program by :
