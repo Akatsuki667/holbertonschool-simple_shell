@@ -11,7 +11,6 @@ int main(int argc __attribute__((unused)), char **argv)
 	size_t len = 0; /* taille buffer getline */
 	int is_interactive = isatty(STDIN_FILENO); /* init interactive flag */
 	char **cmd_vector;
-	int i;
 	int builtin_flag = 0; /* builtin flag */
 
 	while (1) /* boucle infini shell */
@@ -34,16 +33,13 @@ int main(int argc __attribute__((unused)), char **argv)
 			continue;
 		if (cmd_vector[0][0] != '/') /* vérification PATH absolu ? */
 		{
-			is_builtin(&builtin_flag, cmd_vector[0]);
+			is_builtin(&builtin_flag, cmd_vector, line);
 			if (!builtin_flag)
 				check_for_exe_in_path(cmd_vector[0], argv[0]);
-			else
-				continue;
 		}
-		exec_cmd(cmd_vector, argv[0]);
-		for (i = 0; cmd_vector[i] != NULL; i++)
-			free(cmd_vector[i]); /* libération emplacements tableau */
-		free(cmd_vector); /* libération tableau */
+		else
+			exec_cmd(cmd_vector, argv[0]);
+		free_cmd_vector(cmd_vector);
 	}
 	free(line);
 	return (0);

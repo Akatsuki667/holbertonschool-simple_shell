@@ -19,6 +19,10 @@ void _printenv(void);
 char **_tokenize(char *line, char *argv);
 char *_getenv(const char *name);
 
+void is_builtin(int *builtin_flag, char **cmd_vector, char *line);
+void exit_handler(char **cmd_vector, char *line);
+void free_cmd_vector(char **cmd_vector);
+
 extern char **environ;
 
 #endif
