@@ -24,7 +24,7 @@ char *_getenv(const char *name)
 		/* si correspondance et caractère suivant est "=" */
 		{
 			flag = 1; /* indique correspondance trouvé */
-			break; /* arrêt boucle for */
+			break; /* arrêt boucle while */
 		}
 		i++; /* incrémentation variable environnement suivant */
 	}
