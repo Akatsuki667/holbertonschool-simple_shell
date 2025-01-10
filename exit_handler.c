@@ -7,7 +7,9 @@
   */
 void exit_handler(char **cmd_vector, char *line)
 {
-	free_cmd_vector(cmd_vector);
-	free(line);
+	if (cmd_vector)
+		free_cmd_vector(cmd_vector);
+	if (line)
+		free(line);
 	exit(EXIT_SUCCESS);
 }
