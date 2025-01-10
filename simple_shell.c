@@ -32,11 +32,10 @@ int main(int argc __attribute__((unused)), char **argv)
 		cmd_vector = _tokenize(line, argv[0]);
 		if (!cmd_vector)
 			continue;
+		is_builtin(&builtin_flag, cmd_vector, line); /* vrif builtin */
 		if (cmd_vector[0][0] != '/') /* vérification PATH absolu ? */
 		{
-			is_builtin(&builtin_flag, cmd_vector, line);
-			if (!builtin_flag) /* vérification builtin_flag est 0 */
-				check_for_exe_in_path(cmd_vector[0], argv[0]);
+			check_for_exe_in_path(cmd_vector[0], argv[0]);
 		}
 		if (!builtin_flag)
 			exec_cmd(cmd_vector, argv[0]);
