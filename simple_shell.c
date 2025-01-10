@@ -5,47 +5,42 @@
  * @argv: pointeur liste arguments CLI
  * Return: 0 pour succès, 1 pour échec
  */
-int main(int argc, char *argv[])
+int main(int argc __attribute__((unused)), char **argv)
 {
 	char *line = NULL; /* pointeur stockage entrée utilisateur */
 	size_t len = 0; /* taille buffer getline */
-	int is_interactive = isatty(STDIN_FILENO);
-	/* vérification stdin interactif */
-	if (argc != 1) /* vérification nb arguments valide */
-	{
-		perror(argv[0]);
-		return (1);
-	}
+	int is_interactive = isatty(STDIN_FILENO); /* init interactive flag */
+	char **cmd_vector;
+	int i;
+
 	while (1) /* boucle infini shell */
 	{
 		if (is_interactive) /* vérification mode interactif */
 		{
-			printf("#c_is_hell "); /* affichage prompt */
-			fflush(stdout); /* froce écriture imédiate prompt */
+			printf("#c_is_hell ");
+			fflush(stdout); /* force écriture imédiate prompt */
 		}
-
 		if (getline(&line, &len, stdin) == -1)
-		/* vérification entrée utilisateur valide */
+		/* acquisition input user depuis input stream stdin */
 		{
 			if (is_interactive) /* vérification mode interactif */
 				printf("\n");
-
-			break; /* stop boucle */
+			break; /* sort de la boucle while */
 		}
+		line[strcspn(line, "\n")] = '\0'; /* supp le \n final */
+		
+		cmd_vector = _tokenize(line, argv[0]);
+		if (!cmd_vector)
+			continue;
 
-		line[strcspn(line, "\n")] = '\0';
+		if (cmd_vector[0][0] != '/')
+			check_for_exe_in_path(cmd_vector[0], argv[0]);
 
-		if (strcmp(line, "env") == 0)
-			_printenv();
-
-		if (strncmp(line, "exit", 4) == 0)
-		{
-			free(line);
-			exit(0);
-		}
-
-		_tokenize(line, argv[0]); /* appel fonction */
+		exec_cmd(cmd_vector, argv[0]);
+		for (i = 0; cmd_vector[i] != NULL; i++)
+			free(cmd_vector[i]);
+		free(cmd_vector);
 	}
-	free(line); /* libération mémoire alloué */
+	free(line);
 	return (0);
 }

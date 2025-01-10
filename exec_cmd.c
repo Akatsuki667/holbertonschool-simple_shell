@@ -6,7 +6,7 @@
  * @argv: nom du programme
  * Return: void
  */
-void exec_cmd(char *line, char *array[1024], char *argv)
+void exec_cmd(char **cmd_vector, char *argv)
 {
 	pid_t pid; /* stockage processus */
 	int status; /* stockage statut processus enfant */
@@ -15,16 +15,15 @@ void exec_cmd(char *line, char *array[1024], char *argv)
 	if (pid == -1) /* vérification échec processus */
 	{
 		perror(argv);
-		free(line); /* libération mémoire alloué à line par getline() */
-		exit(EXIT_FAILURE); /* indication erreur */
+		return;
 	}
 	else if (pid == 0) /* vérification processus enfant */
 	{
-		if (execve(line, array, NULL) == -1) /* vérification exécution valide */
+		if (execve(cmd_vector[0], cmd_vector, NULL) == -1) 
+		/* vérif execution valide */
 		{
 			perror(argv);
-			free(line); /* libération mémoire alloué à line par getline() */
-			exit(EXIT_FAILURE); /* termine processus enfant avec erreur */
+			exit(EXIT_FAILURE);
 		}
 	}
 	else /* Sinon processus parent */
