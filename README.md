@@ -39,7 +39,7 @@ Before you start, make sure you have the following tools installed:
 
 - A C compiler (e.g., `gcc`).
 - UNIX-based operating system (e.g., Linux, macOS).
--**Style** : follows the betty style's code (use `betty-style` and `betty-doc` for the code review)
+-**Style** : follows the betty style of coding (use `betty-style` and `betty-doc` for the code review)
 
 ---
 
@@ -53,8 +53,6 @@ cd holbertonschool-simple_shell
 
 ## Eamples of use
 Here are some examples of how to use the **simple_shell** :
-
----
 
 ### 1. Basics commands
 1. #c_is_hell ls

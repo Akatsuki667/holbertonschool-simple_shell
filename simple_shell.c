@@ -11,10 +11,11 @@ int main(int argc __attribute__((unused)), char **argv)
 	size_t len = 0; /* taille buffer getline */
 	int is_interactive = isatty(STDIN_FILENO); /* init interactive flag */
 	char **cmd_vector;
-	int builtin_flag = 0; /* builtin flag */
+	int builtin_flag; /* builtin flag */
 
 	while (1) /* boucle infini shell */
 	{
+		builtin_flag = 0;
 		if (is_interactive) /* vérification mode interactif */
 		{
 			printf("#c_is_hell "); /* affichage prompt */
