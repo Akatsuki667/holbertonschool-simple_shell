@@ -15,5 +15,6 @@ void is_builtin(int *builtin_flag, char **cmd_vector, char *line)
 		return;
 	}
 
-	exit_handler(cmd_vector, line);
+	if (strcmp(cmd_vector[0], "exit") == 0)
+		exit_handler(cmd_vector, line);
 }
