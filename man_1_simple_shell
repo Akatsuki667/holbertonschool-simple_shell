@@ -1,4 +1,4 @@
-.TH HSH(1) 1 "JANUARY 2024" "Custom simple shell" "Custom simple shell manual"
+.TH HSH 1 "JANUARY 2024" "Custom simple shell" "Custom simple shell manual"
 .SH NAME
 hsh - simple bourne-shell-like, C-written, simple implementation of a command
 interpreter (shell)
@@ -67,15 +67,18 @@ the errno encountered by the OS are outputted.
 .SH EXAMPLES
 .PP
 native_prompt$ ./hsh
+.br
 c_is_hell ls
-AUTHORS    _getenv.c    check_for_exe_in_path.c  hack                simple_shell.c
-README.md  _tokenize.c  exec_cmd.c               man_1_simple_shell  simple_shell.h
+.br
+AUTHORS  _getenv.c  check_for_exe_in_path.c  hack  simple_shell.c  README.md  _tokenize.c  exec_cmd.c  man_1_simple_shell  simple_shell.h
+.br
 c_is_hell 
 
 .PP
 native_prompt$ echo "/bin/ls" | ./hsh
-AUTHORS    _getenv.c    check_for_exe_in_path.c  hack                simple_shell.c
-README.md  _tokenize.c  exec_cmd.c               man_1_simple_shell  simple_shell.h
+.br
+AUTHORS  _getenv.c  check_for_exe_in_path.c  hack  simple_shell.c  README.md  _tokenize.c  exec_cmd.c  man_1_simple_shell  simple_shell.h
+.br
 native_prompt$
 
 .SH DATE
